@@ -1,7 +1,9 @@
 class AddTeamsTable < ActiveRecord::Migration[5.2]
   def change
+    create_table :games do |t| 
+      t.timestamps
+    end
     create_table :teams do |t| 
-      t.integer :score
       t.references :game, index: true, foreign_key: true
       t.timestamps
     end
