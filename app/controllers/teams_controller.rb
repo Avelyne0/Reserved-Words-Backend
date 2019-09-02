@@ -7,8 +7,19 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @team = Team.create team_params
-    render json: @team, except: [:updated_at, :created_at]
+    @team1 = Team.create(game_id: params[:team1][:game_id])
+    params[:team1].each do |key, user|
+      if user != params[:team1][:game_id]
+      User.create(name: user, team_id: @team1.id)
+      end
+    end
+    @team2 = Team.create(game_id: params[:team2][:game_id])
+    params[:team2].each do |key, user|
+      if user != params[:team2][:game_id]
+        User.create(name: user, team_id: @team2.id)
+      end
+    end
+    render json: {"teams":[@team1, @team2]}
   end
 
   def show
