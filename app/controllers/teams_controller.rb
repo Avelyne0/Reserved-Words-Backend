@@ -19,7 +19,7 @@ class TeamsController < ApplicationController
         User.create(name: user, team_id: @team2.id)
       end
     end
-    render json: {"teams":[@team1, @team2]}
+    render json: {"teams":[TeamSerializer.new(@team1), TeamSerializer.new(@team2)], "userCount":(@team1.users.length + @team2.users.length)}
   end
 
   def show
