@@ -19,7 +19,7 @@ class TeamsController < ApplicationController
         User.create(name: user, team_id: @team2.id)
       end
     end
-    render json: {"teams":[TeamSerializer.new(@team1), TeamSerializer.new(@team2)], "userCount":(@team1.users.length + @team2.users.length)}
+    render json: {"teams":[TeamSerializer.new(@team1), TeamSerializer.new(@team2)], "userCount":((@team1.users.length > @team2.users.length) ? (@team1.users.length * 2) : (@team2.users.length * 2) )}
   end
 
   def show

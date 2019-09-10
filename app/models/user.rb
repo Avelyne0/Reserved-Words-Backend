@@ -1,4 +1,4 @@
 class User < ApplicationRecord
-  validates :name, length: {minimum: 3}
+  validates :name, length: {minimum: 1}
   belongs_to :team
 end
